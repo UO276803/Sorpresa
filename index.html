@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08070A">
+
+<title>B♡RBIE SYSTEM</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+:root {
+    --black: #08070A;
+    --pink: #FF4FA3;
+    --hot-pink: #FF1493;
+    --light-pink: #FFB7D8;
+    --white: #FFF9FC;
+    --purple: #241022;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+/* =====================================================
+   FONDO
+===================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 20% 15%,
+            rgba(255, 79, 163, .20),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(140, 45, 150, .16),
+            transparent 35%
+        ),
+        var(--black);
+    z-index: 0;
+}
+
+.glow {
+    position: absolute;
+    width: 45vw;
+    height: 45vw;
+    min-width: 280px;
+    min-height: 280px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .35;
+    animation: floatingGlow 10s ease-in-out infinite alternate;
+}
+
+.glow.one {
+    background: var(--hot-pink);
+    top: -25%;
+    left: -15%;
+}
+
+.glow.two {
+    background: #7C3AED;
+    right: -20%;
+    bottom: -25%;
+    animation-delay: -4s;
+}
+
+@keyframes floatingGlow {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(35px, -25px) scale(1.15);
+    }
+}
+
+/* =====================================================
+   PARTICULAS
+===================================================== */
+
+.particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: var(--light-pink);
+    opacity: .25;
+    pointer-events: none;
+    z-index: 1;
+    animation: particleMove linear infinite;
+}
+
+@keyframes particleMove {
+    from {
+        transform: translateY(105vh);
+    }
+
+    to {
+        transform: translateY(-10vh);
+    }
+}
+
+/* =====================================================
+   INTERFAZ
+===================================================== */
+
+.screen {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+    text-align: center;
+}
+
+.card {
+    width: min(90vw, 560px);
+
+    animation:
+        cardIn .8s cubic-bezier(.16, 1, .3, 1);
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform:
+            translateY(30px)
+            scale(.96);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+        filter: blur(0);
+    }
+}
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
+.system {
+    margin-bottom: 35px;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    color: rgba(255, 183, 216, .65);
+}
+
+.system span {
+    color: rgba(255,255,255,.3);
+}
+
+/* =====================================================
+   TEXTOS
+===================================================== */
+
+.eyebrow {
+    margin-bottom: 22px;
+
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: rgba(255,255,255,.42);
+}
+
+h1 {
+    margin: 0;
+
+    font-size:
+        clamp(42px, 10vw, 72px);
+
+    line-height: .94;
+    letter-spacing: -4px;
+}
+
+h1 em {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: var(--light-pink);
+}
+
+.subtitle {
+    max-width: 390px;
+
+    margin:
+        28px auto 38px;
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+button {
+    position: relative;
+
+    border: none;
+    border-radius: 999px;
+
+    padding:
+        16px 28px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.primary {
+    color: #0b070a;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #ffd8e9
+        );
+
+    box-shadow:
+        0 12px 45px
+        rgba(255,79,163,.25);
+}
+
+.primary:hover {
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+        0 18px 60px
+        rgba(255,79,163,.4);
+}
+
+.secondary {
+    color:
+        rgba(255,255,255,.8);
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    backdrop-filter: blur(15px);
+}
+
+.secondary:hover {
+    background:
+        rgba(255,79,163,.12);
+
+    border-color:
+        rgba(255,79,163,.4);
+}
+
+/* =====================================================
+   MENSAJES
+===================================================== */
+
+.message {
+    min-height: 25px;
+
+    margin-top: 25px;
+
+    color:
+        rgba(255,183,216,.7);
+
+    font-size: 13px;
+}
+
+/* =====================================================
+   PANTALLA DE PROMESA
+===================================================== */
+
+.promise {
+    padding: 45px 25px;
+
+    border:
+        1px solid
+        rgba(255,79,163,.15);
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.06),
+            rgba(255,79,163,.04)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,.08),
+        0 30px 100px
+        rgba(0,0,0,.35);
+
+    backdrop-filter: blur(25px);
+}
+
+.probably {
+    margin-top: 12px;
+
+    color:
+        rgba(255,255,255,.3);
+
+    font-size: 11px;
+    font-style: italic;
+}
+
+/* =====================================================
+   BOTÓN ESCAPISTA
+===================================================== */
+
+#runaway {
+    transition:
+        left .18s ease,
+        top .18s ease,
+        transform .2s ease;
+}
+
+/* =====================================================
+   CUENTA ATRÁS
+===================================================== */
+
+#countdownScreen {
+    display: none;
+
+    background: #050407;
+
+    z-index: 30;
+}
+
+.countdown {
+    font-size:
+        clamp(110px, 30vw, 240px);
+
+    font-weight: 700;
+
+    letter-spacing: -15px;
+
+    color: white;
+
+    text-shadow:
+        0 0 50px
+        rgba(255,79,163,.7);
+
+    animation:
+        countdownAnim .8s
+        cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes countdownAnim {
+    0% {
+        opacity: 0;
+        transform: scale(1.5);
+        filter: blur(20px);
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* =====================================================
+   FLASH
+===================================================== */
+
+.flash {
+    position: fixed;
+    inset: 0;
+
+    background: white;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 100;
+}
+
+.flash.active {
+    animation:
+        flashAnimation .4s ease;
+}
+
+@keyframes flashAnimation {
+    0% {
+        opacity: .9;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* =====================================================
+   GALERÍA
+===================================================== */
+
+#gallery {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: #000;
+
+    z-index: 50;
+
+    overflow: hidden;
+}
+
+.photo {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(82vw, 390px);
+    max-height: 78vh;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.65)
+        rotate(0deg);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.85);
+
+    transition:
+        opacity .6s ease,
+        transform 1.25s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.photo.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1)
+        rotate(var(--rotation));
+}
+
+/* =====================================================
+   TEXTO DE FOTO
+===================================================== */
+
+.photoCaption {
+    position: absolute;
+
+    left: 50%;
+    bottom: 8%;
+
+    transform:
+        translateX(-50%);
+
+    width: 90%;
+
+    text-align: center;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: white;
+
+    text-shadow:
+        0 2px 15px rgba(0,0,0,.9);
+
+    opacity: 0;
+
+    transition:
+        opacity .5s ease;
+}
+
+.photoCaption.show {
+    opacity: 1;
+}
+
+/* =====================================================
+   CAMBIO DE TONO
+===================================================== */
+
+#seriousScreen {
+    display: none;
+
+    background: #050407;
+
+    z-index: 70;
+}
+
+.seriousText {
+    animation:
+        seriousIn 1.2s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.seriousText .small {
+    margin-bottom: 22px;
+
+    color:
+        rgba(255,255,255,.35);
+
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.seriousText h2 {
+    margin: 0;
+
+    font-size:
+        clamp(42px, 11vw, 75px);
+
+    letter-spacing: -4px;
+}
+
+@keyframes seriousIn {
+    from {
+        opacity: 0;
+        transform: scale(.8);
+        filter: blur(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* =====================================================
+   FLORES
+===================================================== */
+
+#flowersScreen {
+    display: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,79,163,.12),
+            transparent 40%
+        ),
+        #050407;
+
+    z-index: 80;
+}
+
+.flowerContent {
+    width: min(90vw, 600px);
+
+    animation:
+        flowerIn 1.5s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.flowerImage {
+    width: min(80vw, 390px);
+    max-height: 58vh;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 80px
+        rgba(255,79,163,.18);
+
+    margin-bottom: 35px;
+}
+
+.flowerTitle {
+    margin: 0 0 22px;
+
+    font-size:
+        clamp(28px, 7vw, 48px);
+
+    letter-spacing: -2px;
+}
+
+.flowerText {
+    max-width: 450px;
+
+    margin: auto;
+
+    color:
+        rgba(255,255,255,.62);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.thanks {
+    margin-top: 28px;
+
+    color:
+        var(--light-pink);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+@keyframes flowerIn {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+        filter: blur(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+#finalScreen {
+    display: none;
+
+    background: #050407;
+
+    z-index: 90;
+}
+
+.finalContent {
+    animation:
+        finalIn 1.2s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.finalSmall {
+    margin-bottom: 22px;
+
+    color:
+        rgba(255,255,255,.35);
+
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.finalTitle {
+    margin: 0;
+
+    font-size:
+        clamp(42px, 11vw, 75px);
+
+    letter-spacing: -4px;
+}
+
+.finalHeart {
+    margin-top: 25px;
+
+    color:
+        var(--pink);
+
+    font-size: 20px;
+}
+
+@keyframes finalIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* =====================================================
+   ÚLTIMO TROLLEO
+===================================================== */
+
+#pdScreen {
+    display: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,79,163,.13),
+            transparent 45%
+        ),
+        #050407;
+
+    z-index: 100;
+}
+
+.pd {
+    animation:
+        finalIn 1s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.pdTitle {
+    margin-bottom: 25px;
+
+    color:
+        var(--light-pink);
+
+    font-size: 13px;
+    letter-spacing: 5px;
+}
+
+.pdText {
+    margin: 0;
+
+    font-size:
+        clamp(27px, 7vw, 48px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+}
+
+.endLabel {
+    margin-top: 35px;
+
+    color:
+        rgba(255,255,255,.3);
+
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width: 600px) {
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    button {
+        width: min(82vw, 300px);
+    }
+
+    .promise {
+        padding: 35px 20px;
+    }
+
+    .photo {
+        width: 84vw;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     FONDO
+===================================================== -->
+
+<div class="background">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+</div>
+
+
+<!-- =====================================================
+     PANTALLA 1
+===================================================== -->
+
+<section class="screen" id="screen1">
+
+    <div class="card">
+
+        <div class="system">
+            B♡RBIE SYSTEM
+            <span> // ACCESS 01</span>
+        </div>
+
+        <div class="eyebrow">
+            atención
+        </div>
+
+        <h1>
+            te la<br>
+            <em>devuelvo...</em>
+        </h1>
+
+        <div class="subtitle">
+            Ya que hiciste algo (cuando hice esto tenia miedo),
+            pues te voy a entretener un rato.
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="goTo(2)">
+                QUIERO VERLO →
+            </button>
+
+            <button
+                class="secondary"
+                onclick="message1()">
+                ME ESTOY PREOCUPANDO
+            </button>
+
+        </div>
+
+        <div
+            class="message"
+            id="message1">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PANTALLA 2
+===================================================== -->
+
+<section
+    class="screen"
+    id="screen2"
+    style="display:none;">
+
+    <div class="card">
+
+        <div class="system">
+            B♡RBIE SYSTEM
+            <span> // VERIFY 02</span>
+        </div>
+
+        <div class="eyebrow">
+            antes de continuar
+        </div>
+
+        <h1>
+            necesito<br>
+            <em>confirmar algo.</em>
+        </h1>
+
+        <div class="subtitle">
+            Necesito confirmar que eres tú.
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="goTo(3)">
+                SOY YO
+            </button>
+
+            <button
+                class="secondary"
+                onclick="notMe()">
+                NO SOY YO
+            </button>
+
+        </div>
+
+        <div
+            class="message"
+            id="message2">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PANTALLA 3
+===================================================== -->
+
+<section
+    class="screen"
+    id="screen3"
+    style="display:none;">
+
+    <div class="card">
+
+        <div class="system">
+            B♡RBIE SYSTEM
+            <span> // TRUST 03</span>
+        </div>
+
+        <div class="eyebrow">
+            pregunta importante
+        </div>
+
+        <h1>
+            ¿llegaste<br>
+            <em>hasta aquí?</em>
+        </h1>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="trustYes()">
+                SÍ, OBVIAMENTE
+            </button>
+
+            <button
+                class="secondary"
+                onclick="trustNo()">
+                NI DE COÑA
+            </button>
+
+        </div>
+
+        <div
+            class="message"
+            id="message3">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PANTALLA 4
+===================================================== -->
+
+<section
+    class="screen"
+    id="screen4"
+    style="display:none;">
+
+    <div class="card promise">
+
+        <div class="system">
+            B♡RBIE SYSTEM
+            <span> // WARNING 04</span>
+        </div>
+
+        <div class="eyebrow">
+            Pensabas que ya estaba eh pues no otra vuelta
+        </div>
+
+        <h1>
+            prometo que<br>
+            <em>no hay ninguna trampa</em>
+        </h1>
+
+        <div class="probably">
+            *probablemente
+        </div>
+
+        <br>
+
+        <button
+            class="primary"
+            onclick="believeMe()">
+            ME LO CREO
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PANTALLA 5
+===================================================== -->
+
+<section
+    class="screen"
+    id="screen5"
+    style="display:none;">
+
+    <div class="card">
+
+        <div class="system">
+            B♡RBIE SYSTEM
+            <span> // DECISION 05</span>
+        </div>
+
+        <div class="eyebrow">
+            decisión final
+        </div>
+
+        <h1>
+            ¿quieres<br>
+            <em>continuar?</em>
+        </h1>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="startLoading()">
+                SÍ
+            </button>
+
+            <button
+                class="secondary"
+                id="runaway">
+                NO
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PANTALLA DE CARGA
+===================================================== -->
+
+<section
+    class="screen"
+    id="loadingScreen"
+    style="display:none;">
+
+    <div class="card">
+
+        <div class="system">
+            B♡RBIE SYSTEM
+            <span> // LOADING 06</span>
+        </div>
+
+        <div class="eyebrow">
+            preparing experience
+        </div>
+
+        <h1 id="loadingPercent">
+            0%
+        </h1>
+
+        <div
+            class="subtitle"
+            id="loadingText">
+            inicializando…
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CUENTA ATRÁS
+===================================================== -->
+
+<section
+    class="screen"
+    id="countdownScreen">
+
+    <div
+        class="countdown"
+        id="countdown">
+        3
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALERÍA
+===================================================== -->
+
+<div id="gallery">
+
+    <!-- FOTO 1 -->
+    <img
+        class="photo"
+        id="photo1"
+        src="camiseta.jpg"
+        alt="Foto 1">
+
+    <!-- FOTO 2: IA -->
+    <img
+        class="photo"
+        id="photo2"
+        src="peñon.jpg"
+        alt="Foto 2">
+
+    <!-- FOTO 3 -->
+    <img
+        class="photo"
+        id="photo3"
+        src="murcia.jpg"
+        alt="Foto 3">
+
+    <!-- FOTO 4: FLORES -->
+    <!-- No se muestra aquí; aparece después
+         en la pantalla especial de agradecimiento. -->
+
+    <div
+        class="photoCaption"
+        id="photoCaption">
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FLASH
+===================================================== -->
+
+<div
+    class="flash"
+    id="flash">
+</div>
+
+
+<!-- =====================================================
+     PANTALLA "AHORA EN SERIO"
+===================================================== -->
+
+<section
+    class="screen"
+    id="seriousScreen">
+
+    <div class="seriousText">
+
+        <div class="small">
+            B♡RBIE SYSTEM // CHANGE OF TONE
+        </div>
+
+        <h2>
+            vale.<br>
+            ahora en serio.
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FLORES
+===================================================== -->
+
+<section
+    class="screen"
+    id="flowersScreen">
+
+    <div class="flowerContent">
+
+        <img
+            class="flowerImage"
+            src="flores.jpg"
+            alt="Flores">
+
+        <h2 class="flowerTitle">
+            Las flores sí iban en serio.
+        </h2>
+
+        <div class="flowerText">
+
+            Como nadie te da flores, te las doy por la sorpresa.
+
+        </div>
+
+        <div class="thanks">
+            La proxima buscate uno que te las de.
+        </div>
+
+        <div
+            style="
+                margin-top:18px;
+                color:#FF4FA3;
+                font-size:20px;
+            ">
+            ♡
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL BONITO
+===================================================== -->
+
+<section
+    class="screen"
+    id="finalScreen">
+
+    <div class="finalContent">
+
+        <div class="finalSmall">
+            B♡RBIE SYSTEM // THANK YOU
+        </div>
+
+        <h2 class="finalTitle">
+            Y ya.
+        </h2>
+
+        <div
+            style="
+                margin-top:25px;
+                color:rgba(255,255,255,.6);
+                font-size:15px;
+                line-height:1.7;
+            ">
+
+            Gracias por por el libro, le voy a dar uso.
+
+        </div>
+
+        <div class="finalHeart">
+            ❤️
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ÚLTIMO TROLLEO
+===================================================== -->
+
+<section
+    class="screen"
+    id="pdScreen">
+
+    <div class="pd">
+
+        <div class="pdTitle">
+            PD:
+        </div>
+
+        <p class="pdText">
+            Por mucho que me operen las ganas de picate siguen, asi que audios en x1.
+        </p>
+
+        <div class="endLabel">
+            FIN DEL COMUNICADO
+        </div>
+
+        <br>
+
+        <button
+            class="primary"
+            onclick="finalExit()">
+            SALIR
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MÚSICA
+===================================================== -->
+
+<audio
+    id="music"
+    src="cancion.mp3"
+    preload="auto">
+</audio>
+
+
+<script>
+
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+
+for (let i = 0; i < 35; i++) {
+
+    const particle =
+        document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (7 + Math.random() * 12) + "s";
+
+    particle.style.animationDelay =
+        (-Math.random() * 15) + "s";
+
+    document.body.appendChild(particle);
+}
+
+
+/* =====================================================
+   CAMBIO DE PANTALLAS
+===================================================== */
+
+function hideScreens() {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.style.display = "none";
+
+        });
+}
+
+
+function goTo(number) {
+
+    hideScreens();
+
+    document
+        .getElementById("screen" + number)
+        .style.display = "flex";
+}
+
+
+/* =====================================================
+   PANTALLA 1
+===================================================== */
+
+function message1() {
+
+    document
+        .getElementById("message1")
+        .innerText =
+        "Bien. Era exactamente la reacción que buscaba.";
+
+}
+
+
+/* =====================================================
+   PANTALLA 2
+===================================================== */
+
+function notMe() {
+
+    document
+        .getElementById("message2")
+        .innerHTML =
+        `
+        <strong>Perfecto.</strong><br><br>
+        Entonces esto se lo mando a otra persona.<br><br>
+        <button
+            class="primary"
+            onclick="goTo(2)">
+            NO NO, SOY YO
+        </button>
+        `;
+}
+
+
+/* =====================================================
+   PANTALLA 3
+===================================================== */
+
+function trustYes() {
+
+    document
+        .getElementById("message3")
+        .innerHTML =
+        `
+        Qué poca desconfianza.<br>
+        Me preocupa.<br><br>
+
+        <button
+            class="primary"
+            onclick="goTo(4)">
+            CONTINUAR →
+        </button>
+        `;
+}
+
+
+function trustNo() {
+
+    document
+        .getElementById("message3")
+        .innerHTML =
+        `
+        Respuesta razonable.<br>
+        Al menos eres sincera.<br><br>
+
+        <button
+            class="primary"
+            onclick="goTo(4)">
+            CONTINUAR →
+        </button>
+        `;
+}
+
+
+/* =====================================================
+   PROMESA
+===================================================== */
+
+function believeMe() {
+
+    const flash =
+        document.getElementById("flash");
+
+    flash.classList.add("active");
+
+    setTimeout(() => {
+
+        goTo(5);
+
+    }, 450);
+
+}
+
+
+/* =====================================================
+   BOTÓN QUE HUYE
+===================================================== */
+
+const runaway =
+    document.getElementById("runaway");
+
+let runawayTexts = [
+    "no",
+    "nop",
+    "mejor no",
+    "casi",
+    "JAJA",
+    "ni de coña",
+    "déjalo",
+    "😭"
+];
+
+let runawayCount = 0;
+
+
+function moveRunaway(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    const padding = 20;
+
+    const maxX =
+        window.innerWidth -
+        runaway.offsetWidth -
+        padding;
+
+    const maxY =
+        window.innerHeight -
+        runaway.offsetHeight -
+        padding;
+
+    const x =
+        padding +
+        Math.random() *
+        Math.max(maxX - padding, 1);
+
+    const y =
+        padding +
+        Math.random() *
+        Math.max(maxY - padding, 1);
+
+    runaway.style.position = "fixed";
+
+    runaway.style.left =
+        x + "px";
+
+    runaway.style.top =
+        y + "px";
+
+    runaway.innerText =
+        runawayTexts[
+            runawayCount %
+            runawayTexts.length
+        ];
+
+    runawayCount++;
+
+}
+
+
+runaway.addEventListener(
+    "mouseenter",
+    moveRunaway
+);
+
+runaway.addEventListener(
+    "touchstart",
+    moveRunaway,
+    { passive:false }
+);
+
+
+/* =====================================================
+   CARGA
+===================================================== */
+
+function startLoading() {
+
+    hideScreens();
+
+    document
+        .getElementById("loadingScreen")
+        .style.display = "flex";
+
+    let progress = 0;
+
+    const percent =
+        document
+            .getElementById("loadingPercent");
+
+    const text =
+        document
+            .getElementById("loadingText");
+
+
+    const messages = [
+
+        [10, "inicializando…"],
+        [25, "cargando sorpresa…"],
+        [43, "buscando contenido…"],
+        [58, "buscando dignidad…"],
+        [67, "dignidad no encontrada."],
+        [82, "buscando fotos cuestionables…"],
+        [94, "encontradas demasiadas."],
+        [100, "READY."]
+
+    ];
+
+
+    const interval =
+        setInterval(() => {
+
+            progress +=
+                Math.floor(
+                    Math.random() * 4
+                ) + 1;
+
+            if (progress > 100) {
+                progress = 100;
+            }
+
+
+            percent.innerText =
+                progress + "%";
+
+
+            let current =
+                messages[0];
+
+            messages.forEach(item => {
+
+                if (progress >= item[0]) {
+                    current = item;
+                }
+
+            });
+
+
+            text.innerText =
+                current[1];
+
+
+            if (progress >= 100) {
+
+                clearInterval(interval);
+
+                setTimeout(
+                    startCountdown,
+                    1200
+                );
+
+            }
+
+        }, 90);
+
+}
+
+
+/* =====================================================
+   CUENTA ATRÁS
+===================================================== */
+
+function startCountdown() {
+
+    hideScreens();
+
+    const screen =
+        document
+            .getElementById("countdownScreen");
+
+    screen.style.display = "flex";
+
+    const counter =
+        document
+            .getElementById("countdown");
+
+    let number = 3;
+
+    counter.innerText = number;
+
+    counter.style.animation = "none";
+
+    void counter.offsetWidth;
+
+    counter.style.animation =
+        "countdownAnim .8s cubic-bezier(.16,1,.3,1)";
+
+
+    const interval =
+        setInterval(() => {
+
+            number--;
+
+            if (number <= 0) {
+
+                clearInterval(interval);
+
+                counter.innerText = "";
+
+                setTimeout(
+                    startGallery,
+                    500
+                );
+
+                return;
+            }
+
+
+            counter.innerText =
+                number;
+
+            counter.style.animation =
+                "none";
+
+            void counter.offsetWidth;
+
+            counter.style.animation =
+                "countdownAnim .8s cubic-bezier(.16,1,.3,1)";
+
+        }, 900);
+
+}
+
+
+/* =====================================================
+   GALERÍA
+===================================================== */
+
+function startGallery() {
+
+    const countdown =
+        document
+            .getElementById("countdownScreen");
+
+    countdown.style.display = "none";
+
+
+    const gallery =
+        document
+            .getElementById("gallery");
+
+    gallery.style.display = "block";
+
+
+    /* MÚSICA */
+
+    const music =
+        document
+            .getElementById("music");
+
+    music.volume = 0.8;
+
+    music.play().catch(() => {
+
+        /*
+         Algunos navegadores pueden bloquear
+         la reproducción automática.
+        */
+
+        console.log(
+            "Autoplay bloqueado por el navegador."
+        );
+
+    });
+
+
+    const photos = [
+        {
+            id: "photo1",
+            caption:
+                "bueno, tu sueño hecho camiseta"
+        },
+
+        {
+            id: "photo2",
+            caption:
+                "el tamaño de tu pedrada resumida en una foto"
+        },
+
+        {
+            id: "photo3",
+            caption:
+                "donde te tienes que quedar, hazme caso."
+        }
+    ];
+
+
+    let delay = 800;
+
+
+    photos.forEach((item, index) => {
+
+        setTimeout(() => {
+
+            showPhoto(
+                item.id,
+                item.caption
+            );
+
+        }, delay);
+
+        delay += 3000;
+
+    });
+
+
+    /*
+       Después de la última foto
+       hacemos el cambio de tono.
+    */
+
+    setTimeout(() => {
+
+        gallery.style.display = "none";
+
+        showSeriousScreen();
+
+    }, delay + 800);
+
+}
+
+
+/* =====================================================
+   MOSTRAR FOTO
+===================================================== */
+
+function showPhoto(
+    id,
+    caption
+) {
+
+    const photos =
+        document
+            .querySelectorAll(".photo");
+
+    photos.forEach(photo => {
+
+        photo.classList.remove("show");
+
+    });
+
+
+    const photo =
+        document.getElementById(id);
+
+
+    const flash =
+        document.getElementById("flash");
+
+
+    flash.classList.remove("active");
+
+    void flash.offsetWidth;
+
+    flash.classList.add("active");
+
+
+    const rotation =
+        Math.random() * 10 - 5;
+
+
+    photo.style.setProperty(
+        "--rotation",
+        rotation + "deg"
+    );
+
+
+    photo.style.left =
+        (50 + Math.random() * 10 - 5) + "%";
+
+    photo.style.top =
+        (50 + Math.random() * 10 - 5) + "%";
+
+
+    photo.classList.add("show");
+
+
+    const captionElement =
+        document
+            .getElementById("photoCaption");
+
+
+    captionElement.innerText =
+        caption;
+
+    captionElement.classList.remove("show");
+
+    setTimeout(() => {
+
+        captionElement.classList.add("show");
+
+    }, 400);
+
+}
+
+
+/* =====================================================
+   AHORA EN SERIO
+===================================================== */
+
+function showSeriousScreen() {
+
+    const screen =
+        document
+            .getElementById("seriousScreen");
+
+    screen.style.display = "flex";
+
+
+    setTimeout(() => {
+
+        screen.style.display = "none";
+
+        showFlowers();
+
+    }, 2600);
+
+}
+
+
+/* =====================================================
+   FLORES
+===================================================== */
+
+function showFlowers() {
+
+    const flowers =
+        document
+            .getElementById("flowersScreen");
+
+    flowers.style.display = "flex";
+
+
+    setTimeout(() => {
+
+        flowers.style.display = "none";
+
+        showFinal();
+
+    }, 6500);
+
+}
+
+
+/* =====================================================
+   FINAL BONITO
+===================================================== */
+
+function showFinal() {
+
+    const final =
+        document
+            .getElementById("finalScreen");
+
+    final.style.display = "flex";
+
+
+    setTimeout(() => {
+
+        final.style.display = "none";
+
+        showPD();
+
+    }, 4000);
+
+}
+
+
+/* =====================================================
+   ÚLTIMO TROLLEO
+===================================================== */
+
+function showPD() {
+
+    const pd =
+        document
+            .getElementById("pdScreen");
+
+    pd.style.display = "flex";
+
+}
+
+
+/* =====================================================
+   SALIR
+===================================================== */
+
+function finalExit() {
+
+    const pd =
+        document
+            .getElementById("pdScreen");
+
+
+    pd.innerHTML = `
+
+        <div class="pd">
+
+            <div class="pdTitle">
+                B♡RBIE SYSTEM
+            </div>
+
+            <p class="pdText">
+                ¿Seguro?
+            </p>
+
+            <br>
+
+            <button
+                class="primary"
+                onclick="reallyExit()">
+                SÍ
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   AHORA SÍ
+===================================================== */
+
+function reallyExit() {
+
+    document.body.innerHTML = `
+
+        <div
+            style="
+                position:fixed;
+                inset:0;
+                background:#050407;
+            ">
+        </div>
+
+    `;
+
+}
+
+</script>
+
+</body>
+</html>
